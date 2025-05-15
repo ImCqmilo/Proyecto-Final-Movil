@@ -15,6 +15,20 @@ class HomePage extends StatelessWidget {
             onPressed: () => context.push('/login'),
             child: const Text('Ir a Login'),
           ),
+          ElevatedButton(
+              onPressed: () => context.pushNamed('plants'),
+              child: const Text('Plantas a Cuidar'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => context.pushNamed('newPlant'),
+              child: const Text('Nueva Planta'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => context.pushNamed('status'),
+              child: const Text('Gráfico de Status'),
+            ),
         ],
       ),
     );
