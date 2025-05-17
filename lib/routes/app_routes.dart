@@ -1,19 +1,17 @@
 import 'package:go_router/go_router.dart';
+import 'package:hola_mundo/views/home_page.dart';
 import 'package:hola_mundo/views/Auth/login_page.dart';
 import 'package:hola_mundo/views/Auth/register_page.dart';
-import 'package:hola_mundo/views/home_page.dart';
-import 'package:hola_mundo/views/new_plant_view.dart';
 import 'package:hola_mundo/views/plants_view.dart';
+import 'package:hola_mundo/views/new_plant_view.dart';
 import 'package:hola_mundo/views/status_view.dart';
 
-
-
-final GoRouter appRouter  = GoRouter(
-  initialLocation: '/',
+final GoRouter appRouter = GoRouter(
+  initialLocation: '/homepage',
   routes: [
     GoRoute(
-      path: '/',
-      name: 'home',
+      path: '/homepage',
+      name: 'homepage',
       builder: (context, state) => const HomePage(),
     ),
     GoRoute(
@@ -26,7 +24,7 @@ final GoRouter appRouter  = GoRouter(
       name: 'register',
       builder: (context, state) => const RegisterPage(),
     ),
-     GoRoute(
+    GoRoute(
       path: '/plants',
       name: 'plants',
       builder: (context, state) => const PlantsView(),
