@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hola_mundo/main.dart';
 
 class PlantsView extends StatelessWidget {
   const PlantsView({super.key});
@@ -6,7 +8,29 @@ class PlantsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Plantas a Cuidar')),
+      appBar: AppBar(title: const Text('Plantas a Cuidar'),
+      actions: [
+  ValueListenableBuilder<ThemeMode>(
+    valueListenable: themeNotifier,
+    builder: (context, mode, _) {
+      return Row(
+        children: [
+          Icon(
+            mode == ThemeMode.dark ? Icons.dark_mode : Icons.light_mode,
+          ),
+          Switch(
+            value: mode == ThemeMode.dark,
+            onChanged: (value) {
+              themeNotifier.value =
+                  value ? ThemeMode.dark : ThemeMode.light;
+                   },
+                ),
+               ],
+             );
+            },
+          ),
+        ],
+      ),
       body: ListView(
         children: const [
           PlantItem(name: 'Cilantro', lastWatered: '12:00 pm'),
@@ -14,7 +38,7 @@ class PlantsView extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {}, // Agrega lógica para crear nueva planta
+        onPressed: () => context.go('/new-plant'), // Agrega lógica para crear nueva planta
         child: const Icon(Icons.add),
       ),
     );

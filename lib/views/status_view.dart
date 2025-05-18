@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hola_mundo/main.dart';
 
 class StatusView extends StatelessWidget {
   const StatusView({super.key});
@@ -6,7 +7,29 @@ class StatusView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Gráfico de Status')),
+      appBar: AppBar(title: const Text('Gráfico de Status'),
+      actions: [
+  ValueListenableBuilder<ThemeMode>(
+    valueListenable: themeNotifier,
+    builder: (context, mode, _) {
+      return Row(
+        children: [
+          Icon(
+            mode == ThemeMode.dark ? Icons.dark_mode : Icons.light_mode,
+          ),
+          Switch(
+            value: mode == ThemeMode.dark,
+            onChanged: (value) {
+              themeNotifier.value =
+                  value ? ThemeMode.dark : ThemeMode.light;
+                    },
+                  ),
+                ],
+                );
+              },
+            ),
+          ],
+        ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
