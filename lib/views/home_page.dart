@@ -29,6 +29,10 @@ class HomePage extends StatelessWidget {
               onPressed: () => context.pushNamed('status'),
               child: const Text('Gráfico de Status'),
             ),
+             ElevatedButton(
+              onPressed: () => context.pushNamed('categorias'),
+              child: const Text('categorias'),
+            ),
         ],
       ),
     );
