@@ -57,6 +57,7 @@ Widget build(BuildContext context) {
             onPressed: () => context.go('/status'),
             child: const Text("Gráfico de Status"),
           ),
+          const SizedBox(height: 12),
           ElevatedButton(
               onPressed: () => context.pushNamed('categorias'),
               child: const Text('categorias'),

@@ -10,7 +10,7 @@ import 'package:hola_mundo/views/new_plant_view.dart';
 import 'package:hola_mundo/views/status_view.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/homepage',
+  initialLocation: '/login',
   routes: [
     GoRoute(
       path: '/homepage',
