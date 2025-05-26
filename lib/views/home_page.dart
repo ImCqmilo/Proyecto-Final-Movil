@@ -9,21 +9,28 @@ class HomePage extends StatelessWidget {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      title: const Text('Home'),
+      title: const Text('Inicio'),
       actions: [
-        ValueListenableBuilder<ThemeMode>(
-          valueListenable: themeNotifier,
-          builder: (context, currentMode, _) {
-            return Switch(
-              value: currentMode == ThemeMode.dark,
-              onChanged: (value) {
-                themeNotifier.value =
-                    value ? ThemeMode.dark : ThemeMode.light;
-              },
-            );
-          },
-        ),
-      ],
+  ValueListenableBuilder<ThemeMode>(
+    valueListenable: themeNotifier,
+    builder: (context, mode, _) {
+      return Row(
+        children: [
+          Icon(
+            mode == ThemeMode.dark ? Icons.dark_mode : Icons.light_mode,
+          ),
+          Switch(
+            value: mode == ThemeMode.dark,
+            onChanged: (value) {
+              themeNotifier.value =
+                  value ? ThemeMode.dark : ThemeMode.light;
+                  },
+                ),
+               ],
+              );
+            },
+          ),
+        ],
     ),
     body: Center(
       child: Column(
