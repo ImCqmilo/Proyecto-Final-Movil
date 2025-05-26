@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:hola_mundo/main.dart'; // importa el themeNotifier
@@ -11,19 +12,20 @@ class NewPlantView extends StatefulWidget {
 }
 
 class _NewPlantViewState extends State<NewPlantView> {
-  File? _cilantroImage;
-  File? _perejilImage;
+  Uint8List? _cilantroImageBytes;
+  Uint8List? _perejilImageBytes;
 
   final ImagePicker _picker = ImagePicker();
 
   Future<void> _pickImage(bool isCilantro) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
+      final bytes = await pickedFile.readAsBytes();
       setState(() {
         if (isCilantro) {
-          _cilantroImage = File(pickedFile.path);
+          _cilantroImageBytes = bytes;
         } else {
-          _perejilImage = File(pickedFile.path);
+          _perejilImageBytes = bytes;
         }
       });
     }
@@ -72,8 +74,8 @@ class _NewPlantViewState extends State<NewPlantView> {
             const SizedBox(height: 24),
             const Text('Cilantro'),
             const SizedBox(height: 8),
-            _cilantroImage != null
-                ? Image.file(_cilantroImage!, height: 100)
+              _cilantroImageBytes != null
+                ? Image.memory(_cilantroImageBytes!, height: 100)
                 : const Placeholder(fallbackHeight: 100),
             ElevatedButton(
               onPressed: () => _pickImage(true),
@@ -82,8 +84,8 @@ class _NewPlantViewState extends State<NewPlantView> {
             const SizedBox(height: 24),
             const Text('Perejil'),
             const SizedBox(height: 8),
-            _perejilImage != null
-                ? Image.file(_perejilImage!, height: 100)
+            _perejilImageBytes != null
+                ? Image.memory(_perejilImageBytes!, height: 100)
                 : const Placeholder(fallbackHeight: 100),
             ElevatedButton(
               onPressed: () => _pickImage(false),
