@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hola_mundo/routes/app_routes.dart';
 
 final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();  
+   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

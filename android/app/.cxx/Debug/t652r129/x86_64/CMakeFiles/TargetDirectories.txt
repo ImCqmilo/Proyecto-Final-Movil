@@ -1,0 +1,2 @@
+C:/Users/camil/OneDrive/Documentos/Proyecto Final Moviles/Proyecto final/android/app/.cxx/Debug/t652r129/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/camil/OneDrive/Documentos/Proyecto Final Moviles/Proyecto final/android/app/.cxx/Debug/t652r129/x86_64/CMakeFiles/rebuild_cache.dir

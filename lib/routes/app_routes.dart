@@ -1,4 +1,7 @@
 import 'package:go_router/go_router.dart';
+import 'package:hola_mundo/views/categorias/categorias_create_view.dart';
+import 'package:hola_mundo/views/categorias/categorias_edit_view.dart';
+import 'package:hola_mundo/views/categorias/categorias_list_view.dart';
 import 'package:hola_mundo/views/home_page.dart';
 import 'package:hola_mundo/views/Auth/login_page.dart';
 import 'package:hola_mundo/views/Auth/register_page.dart';
@@ -38,6 +41,22 @@ final GoRouter appRouter = GoRouter(
       path: '/status',
       name: 'status',
       builder: (context, state) => const StatusView(),
+    ),
+    GoRoute(
+      path: '/categorias',
+      name: 'categorias',
+      builder: (_, __) => const CategoriasListView(),
+    ),
+    GoRoute(
+      path: '/categorias/create',
+      builder: (context, state) => const CategoriasCreateView(),
+    ),
+    GoRoute(
+      path: '/categorias/edit/:id',
+      builder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+        return CategoriasEditView(id: id);
+      },
     ),
   ],
 );
