@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hola_mundo/main.dart'; // Asegúrate de importar donde está el themeNotifier
+import 'package:hola_mundo/main.dart';
+import 'package:hola_mundo/services/auth_service.dart'; // Asegúrate de importar donde está el themeNotifier
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,6 +12,18 @@ Widget build(BuildContext context) {
     appBar: AppBar(
       title: const Text('Inicio'),
       actions: [
+        IconButton(
+      icon: const Icon(Icons.logout),
+      tooltip: 'Cerrar sesión',
+      onPressed: () async {
+        final token = await AuthService().getToken();
+        if (token != null) {
+          await AuthService().logout();
+        }
+        if (!context.mounted) return;
+        context.go('/login');
+      },
+    ),
   ValueListenableBuilder<ThemeMode>(
     valueListenable: themeNotifier,
     builder: (context, mode, _) {
@@ -38,29 +51,16 @@ Widget build(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.center, // Centra horizontalmente
         mainAxisSize: MainAxisSize.min,
         children: [
-          ElevatedButton(
-            onPressed: () => context.go('/login'),
-            child: const Text("Ir a Login"),
-          ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () => context.go('/plants'),
-            child: const Text("Plantas a Cuidar"),
+            child: const Text("Plantas"),
           ),
-          const SizedBox(height: 12),
-          ElevatedButton(
-            onPressed: () => context.go('/new-plant'),
-            child: const Text("Nueva Planta"),
-          ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () => context.go('/status'),
             child: const Text("Gráfico de Status"),
           ),
-          ElevatedButton(
-              onPressed: () => context.pushNamed('categorias'),
-              child: const Text('categorias'),
-            ),
         ],
       ),
     ),

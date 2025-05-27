@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (result['success']) {
       if (!mounted) return;
-      context.go('/establecimientos');
+      context.go('/homepage');
     } else {
       setState(() {
         errorMessage = result['message'] ?? 'Error al iniciar sesión';
