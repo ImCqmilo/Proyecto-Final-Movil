@@ -8,25 +8,30 @@ class PlantsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Plantas a Cuidar'),
-      actions: [
-  ValueListenableBuilder<ThemeMode>(
-    valueListenable: themeNotifier,
-    builder: (context, mode, _) {
-      return Row(
-        children: [
-          Icon(
-            mode == ThemeMode.dark ? Icons.dark_mode : Icons.light_mode,
-          ),
-          Switch(
-            value: mode == ThemeMode.dark,
-            onChanged: (value) {
-              themeNotifier.value =
-                  value ? ThemeMode.dark : ThemeMode.light;
-                   },
-                ),
-               ],
-             );
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.go('/homepage'), // o la ruta principal que tengas
+        ),
+        title: const Text('Plantas a Cuidar'),
+        actions: [
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: themeNotifier,
+            builder: (context, mode, _) {
+              return Row(
+                children: [
+                  Icon(
+                    mode == ThemeMode.dark ? Icons.dark_mode : Icons.light_mode,
+                  ),
+                  Switch(
+                    value: mode == ThemeMode.dark,
+                    onChanged: (value) {
+                      themeNotifier.value =
+                          value ? ThemeMode.dark : ThemeMode.light;
+                    },
+                  ),
+                ],
+              );
             },
           ),
         ],
