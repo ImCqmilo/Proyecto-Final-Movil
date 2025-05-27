@@ -66,7 +66,6 @@ Widget build(BuildContext context) {
               onPressed: () => context.pushNamed('categorias'),
               child: const Text('categorias'),
             ),
-          ),
         ],
       ),
     ),
